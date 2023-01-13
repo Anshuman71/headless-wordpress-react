@@ -1,13 +1,15 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 
+const WORDPRESS_HOST = "https://react-wordpress.cdn-sigma.com";
+
 function App() {
   const [loading, setLoading] = useState(true);
   const [selectedPost, setSelected] = useState(null);
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch("https://react-wordpress.cdn-sigma.com/wp-json/wp/v2/posts")
+    fetch(`${WORDPRESS_HOST}/wp-json/wp/v2/posts`)
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);
