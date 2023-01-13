@@ -1,23 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  const [selectedPost, setSelected] = useState(null);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    fetch("https://react-wordpress.cdn-sigma.com/wp-json/wp/v2/posts")
+      .then((res) => res.json())
+      .then((data) => {
+        setLoading(false);
+        setPosts(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div style={{ padding: 20 }}>
+      <h1>{loading ? "Loading..." : "Posts"}</h1>
+      <div style={{ display: "flex" }}>
+        <div style={{ marginRight: 40, width: "30%" }}>
+          {loading ? null : posts.length ? (
+            <ul>
+              {posts.map((post, index) => (
+                <li
+                  style={{
+                    cursor: "pointer",
+                    color: selectedPost?.slug === post.slug ? "blue" : "black",
+                    marginBottom: 10,
+                  }}
+                  onClick={() => setSelected(posts[index])}
+                  key={post.slug}
+                >
+                  {post.title.rendered}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No posts available!</p>
+          )}
+        </div>
+        <div
+          style={{
+            width: "70%",
+            marginLeft: 50,
+            border: "2px solid black",
+            padding: "2px 10px",
+            overflow: "hidden",
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          {selectedPost ? (
+            <article>
+              <h2>{selectedPost.title.rendered}</h2>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: selectedPost.content.rendered,
+                }}
+              />
+            </article>
+          ) : (
+            <p>Click a post title to read the post.</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
