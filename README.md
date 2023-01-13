@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# React App with Headless wordpress
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Prerequisite
+
+- Update `WORDPRESS_HOST` in `src/App.js` with your Wordpress host URL
 
 ## Available Scripts
 
