@@ -1,4 +1,3 @@
-import "./App.css";
 import { useEffect, useState } from "react";
 
 const WORDPRESS_HOST = "https://react-wordpress.cdn-sigma.com";
