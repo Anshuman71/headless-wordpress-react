@@ -4,7 +4,7 @@ const WORDPRESS_HOST = "https://react-wordpress.cdn-sigma.com";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [selectedPost, setSelected] = useState(null);
+  const [selectedPost, setSelectedPost] = useState(null);
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function App() {
                     color: selectedPost?.slug === post.slug ? "blue" : "black",
                     marginBottom: 10,
                   }}
-                  onClick={() => setSelected(posts[index])}
+                  onClick={() => setSelectedPost(posts[index])}
                   key={post.slug}
                 >
                   {post.title.rendered}
