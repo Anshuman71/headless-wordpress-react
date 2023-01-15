@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 
-const WORDPRESS_HOST = "https://react-wordpress.cdn-sigma.com";
+const SITE_NAME = "anshumon789.wordpress.com";
+
+const WORDPRESS_HOST = `https://public-api.wordpress.com/wp/v2/sites/${SITE_NAME}`;
+
+const WORDPRESS_POSTS = `${WORDPRESS_HOST}/posts`;
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -8,13 +12,12 @@ function App() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch(`${WORDPRESS_HOST}/wp-json/wp/v2/posts`)
+    fetch(WORDPRESS_POSTS)
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);
         setPosts(data);
-      })
-      .catch((err) => console.log(err));
+      });
   }, []);
 
   return (
