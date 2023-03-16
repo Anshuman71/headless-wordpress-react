@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const SITE_NAME = "anshumon789.wordpress.com";
+const SITE_NAME = "<your-site-name>";
 
 const WORDPRESS_HOST = `https://public-api.wordpress.com/wp/v2/sites/${SITE_NAME}`;
 
