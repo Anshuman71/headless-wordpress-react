@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Prerequisite
 
-- Update `WORDPRESS_HOST` in `src/App.js` with your Wordpress host URL
+- Update `SITE_NAME` in `src/App.js` with your Wordpress site name.
 
 ## Available Scripts
 
